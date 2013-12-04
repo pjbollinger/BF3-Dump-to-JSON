@@ -1,5 +1,6 @@
 import re
 import json
+import sys
 
 CLEAN_EXIT = 0
 IOERROR_FILE_NOT_FOUND = 1
@@ -8,13 +9,15 @@ IOERROR_FILE_NOT_WRITABLE = 2
 def main():
     
     # Get file name
-    fileName = raw_input("What file would you like to turn into JSON? (example.txt) ")
+    if len(sys.argv) > 1: #Command line support
+     fileName = sys.argv[1] 
+    else: fileName = raw_input("What file would you like to turn into JSON? (example.txt) ")
     
     # Open file
     try:
         f = open(fileName, "r")
     except IOError:
-        print("Incorrect file name.")
+        print("File not found: \"%s\"" % fileName)
         return IOERROR_FILE_NOT_FOUND
     
     # Read into memory
@@ -106,11 +109,11 @@ def treeToDict(treeStructureList):
             outputText[keyValue] = {"value": None,"properties":None}
             if len(getKeyAndValue) > 2:
                 # There is a key, value, and additional parameters       
-                outputText[keyValue]["value"] = getKeyAndValue.pop(0)
+                outputText[keyValue]["value"] = parse(getKeyAndValue.pop(0))
                 outputText[keyValue]["properties"] = getKeyAndValue
             elif len(getKeyAndValue) > 1:
                 # There is a key and value
-                outputText[keyValue]["value"] = getKeyAndValue.pop()
+                outputText[keyValue]["value"] = parse(getKeyAndValue.pop())
             
             outputText[keyValue].update(treeToDict(item['children']))
         
@@ -119,15 +122,32 @@ def treeToDict(treeStructureList):
             keyValue = getKeyAndValue.pop(0)
             if len(getKeyAndValue) > 0:
                 # There is a key and value
-                outputText[keyValue] = getKeyAndValue.pop()
+                outputText[keyValue] = parse(getKeyAndValue.pop())
             else:
                 outputText[keyValue] = None
         
-                
         
 
     #print outputText
     return outputText
 
+def parse(data):
+    """Converts string values into their respective data types"""
+    try:
+        return int(data)
+    except ValueError:
+        try:
+            return float(data)
+        except ValueError:
+            if data == "True":
+                return True
+            elif data == "False":
+                return False
+            elif data == "*nullString*":
+                return ""
+            elif data == "*nullArray*":
+                return []
+            else:
+                return data
 
 main()
