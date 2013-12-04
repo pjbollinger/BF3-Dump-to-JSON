@@ -5,9 +5,9 @@ This project was created to provide a means of converting BF3 text file dumps in
 
 ## Usage
 
-Run `main.py` with a BF3 text dump in the same directory.
+Run `python main.py`, with a BF3 text dump in the same directory, and the program will prompt you for a file name.
 
-The program will prompt you for a file name.
+You may also run `python main.py fileName.txt`, with a BF3 text dump in the same directory, and it will convert without prompt.
 
 ### Example of successful usage
 
@@ -34,6 +34,7 @@ Handcuff.txt -----> Handcuff.json conversion complete.
 0000XXXX        BlahBlah3 False
 0000XXXX        BlahBlah4 False
 0000XXXX        BlahBlah5 0.0
+
 ```
 
 ### Example of output JSON file
@@ -44,23 +45,23 @@ Handcuff.txt -----> Handcuff.json conversion complete.
         "$::BlahBlahData": {
             "$::BlahBlahAsset": {
                 "$::BlahBlahContainer": null,
-                "BlahBlah": "*nullString*",
+                "BlahBlah": "",
                 "properties": null,
                 "value": null
             },
             "properties": null,
             "value": null
         },
-        "BlahBlah1": "False",
-        "BlahBlah2": "True",
-        "BlahBlah3": "False",
-        "BlahBlah4": "False",
-        "BlahBlah5": "0.",
+        "BlahBlah1": false,
+        "BlahBlah2": true,
+        "BlahBlah3": false,
+        "BlahBlah4": false,
+        "BlahBlah5": 0.0,
         "BlahBlah::BlahBlah": {
-            "BlahBlah1": "0.0",
-            "BlahBlah2": "0.0",
-            "BlahBlah3": "0.0",
-            "BlahBlah4": "0.0",
+            "BlahBlah1": 0.0,
+            "BlahBlah2": 0.0,
+            "BlahBlah3": 0.0,
+            "BlahBlah4": 0.0,
             "properties": null,
             "value": null
         },
