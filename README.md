@@ -33,7 +33,8 @@ Handcuff.txt -----> Handcuff.json conversion complete.
 0000XXXX        BlahBlah2 True
 0000XXXX        BlahBlah3 False
 0000XXXX        BlahBlah4 False
-0000XXXX        BlahBlah5 0.0
+0000XXXX        BlahBlah5 *nullArray*
+0000XXXX        BlahBlah6 0.0
 
 ```
 
@@ -56,7 +57,8 @@ Handcuff.txt -----> Handcuff.json conversion complete.
         "BlahBlah2": true,
         "BlahBlah3": false,
         "BlahBlah4": false,
-        "BlahBlah5": 0.0,
+        "BlahBlah5": [],
+        "BlahBlah6": 0.0,
         "BlahBlah::BlahBlah": {
             "BlahBlah1": 0.0,
             "BlahBlah2": 0.0,
